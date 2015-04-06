@@ -1,6 +1,4 @@
-# Ember-cli-pace
-
-This README outlines the details of collaborating on this Ember addon.
+# Pace.js load progress bar for Ember apps
 
 ## Installation
 
