@@ -23,7 +23,7 @@ Due to application scripts loading may take some time (especially, using mobile 
 
 Therefore, the scripts will be loaded via AJAX requests that allow to [compute loaded vs total bytes ratio](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress). If your scripts are located on separate host, please bear in mind CORS policy.
 
-## Theme configuration
+## Themes
 
 Pace.js provides [14 progress bar themes](https://github.com/HubSpot/pace/tree/master/themes/black) in [10 colors](https://github.com/HubSpot/pace/tree/master/themes). To configure theme, append few lines to `config/environment.js`:
 
