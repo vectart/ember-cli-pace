@@ -4,8 +4,8 @@
 var fs = require('fs');
 var path = require('path');
 
-var _pacePath;
-var _paceConfig = {
+var _pacePath, _paceConfig;
+var _defaultPaceConfig = {
   color: 'blue',
   theme: 'minimal'
 };
@@ -16,7 +16,12 @@ module.exports = {
   config: function (environment, baseConfig) {
     if ('pace' in baseConfig) {
       _paceConfig = baseConfig.pace;
+    } else {
+      _paceConfig = {};
     }
+
+    _paceConfig.color = _paceConfig.color || _defaultPaceConfig.color;
+    _paceConfig.theme = _paceConfig.theme || _defaultPaceConfig.theme;
 
     if (environment === 'development') {
       return {
