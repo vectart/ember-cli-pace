@@ -10,9 +10,7 @@ Using latest Ember-cli:
 
 Or for older versions:
 
-`npm install ember-cli-pace`
-
-`ember g pace`
+`npm install ember-cli-pace && ember g pace`
 
 ## Flash-like initial script loading
 
