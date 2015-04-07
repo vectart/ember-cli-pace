@@ -21,7 +21,7 @@ Due to application scripts loading may take some time (especially, using mobile 
 <script pace-src="assets/app.js"></script>
 ```
 
-Therefore, the scripts will be loaded via AJAX requests that allow to [compute loaded vs total bytes ratio](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress). If your scripts are located on separate host, please bear in mind CORS policy.
+Therefore, the scripts will be loaded via AJAX, which allows to [compute loaded vs total bytes ratio](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress). If your scripts are located on separate host, please note CORS policy.
 
 ## Themes
 
