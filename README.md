@@ -2,6 +2,8 @@
 
 <img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="300" />
 
+### [Demo](http://vectart.github.io/ember-cli-pace/)
+
 ## Installation
 
 Using latest Ember-cli, run the command:
@@ -43,7 +45,7 @@ var ENV = {
 
 ## Pace API
 
-More details on Pace API and configuration could be found on http://github.hubspot.com/pace/
+More details on Pace API and configuration could be found on [http://github.hubspot.com/pace/](http://github.hubspot.com/pace/)
 
 ## Developing ember-cli-pace
 
