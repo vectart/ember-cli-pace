@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-pace",
-  "version": "0.0.1",
-  "description": "Pace.js load progress bar for Ember apps",
+  "version": "0.0.2",
+  "description": "Pace.js load progress bar for Ember apps, incl. Flash-like initial script loading",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -37,14 +37,15 @@
   "keywords": [
     "ember-addon",
     "ember-cli",
+    "ember",
     "pace",
     "progress",
     "loader",
     "loading",
-    "ember",
     "async",
     "ajax",
-    "meter"
+    "meter",
+    "bar"
   ],
   "dependencies": {
     "ember-cli-babel": "^4.0.0"
