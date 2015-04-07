@@ -1,4 +1,4 @@
-# [Pace.js](http://github.hubspot.com/pace/docs/welcome/) load progress bar for Ember apps, incl. Flash-like initial scripts loading
+# [Pace.js](http://github.hubspot.com/pace/docs/welcome/) load progress bar for Ember apps, incl. initial scripts lazy loading
 
 <img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="300" />
 
