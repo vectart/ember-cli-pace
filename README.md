@@ -25,7 +25,7 @@ Therefore, the scripts will be loaded via AJAX requests that allow to [compute l
 
 ## Themes
 
-Pace.js provides [14 progress bar themes](https://github.com/HubSpot/pace/tree/master/themes/black) in [10 colors](https://github.com/HubSpot/pace/tree/master/themes).
+Pace.js provides [14 progress bar themes](https://github.com/HubSpot/pace/tree/master/themes/black) in [10 colors](https://github.com/HubSpot/pace/tree/master/themes). See them in action: http://github.hubspot.com/pace/docs/welcome/
 
 To configure theme, append few lines to `config/environment.js`:
 
