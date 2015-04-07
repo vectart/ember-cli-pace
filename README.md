@@ -4,7 +4,7 @@
 
 ## Installation
 
-Using latest Ember-cli, run the command in terminal:
+Using latest Ember-cli, run the command:
 
 `ember install:addon ember-cli-pace`
 
