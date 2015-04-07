@@ -1,4 +1,4 @@
-# [Pace.js](http://github.hubspot.com/pace/docs/welcome/) load progress bar for Ember apps, incl. Flash-like preloader during initial scripts loading
+# [Pace.js](http://github.hubspot.com/pace/docs/welcome/) load progress bar for Ember apps, incl. Flash-like initial scripts loading
 
 <img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="300" />
 
@@ -39,7 +39,11 @@ var ENV = {
 ![Pace.js themes](https://www.dropbox.com/s/d4ladjwfrqq6ehv/Screenshot%202015-04-07%2011.54.48.png?dl=1)
 
 
-## Developing
+## Pace API
+
+More details on Pace API and configuration could be found on http://github.hubspot.com/pace/
+
+## Developing ember-cli-pace
 
 * `git clone` this repository
 * `npm install`
