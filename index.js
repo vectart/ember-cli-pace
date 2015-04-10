@@ -3,25 +3,56 @@
 
 var fs = require('fs');
 var path = require('path');
+var UglifyJS = require("uglify-js");
 
-var _pacePath, _paceConfig;
+var _paceConfig = {};
 var _defaultPaceConfig = {
   color: 'blue',
-  theme: 'minimal'
+  theme: 'material',
+  catchupTime: 50,
+  initialRate: .01,
+  minTime: 100,
+  ghostTime: 50,
+  maxProgressPerFrame: 20,
+  easeFactor: 1.25,
+  startOnPageLoad: true,
+  restartOnPushState: true,
+  restartOnRequestAfter: 500,
+  target: 'body',
+  elements: {
+    checkInterval: 100,
+    selectors: ['body', '.ember-view']
+  },
+  eventLag: {
+    minSamples: 10,
+    sampleCount: 3,
+    lagThreshold: 3
+  },
+  ajax: {
+    trackMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    trackWebSockets: true,
+    ignoreURLs: []
+  }
 };
+
 
 module.exports = {
   name: 'ember-cli-pace',
 
   config: function (environment, baseConfig) {
     if ('pace' in baseConfig) {
-      _paceConfig = baseConfig.pace;
+      if (!baseConfig.pace) {
+        _paceConfig = false;
+      } else {
+        Object.keys(_defaultPaceConfig).forEach(function (key) {
+          _paceConfig[key] = baseConfig.pace[key] || _defaultPaceConfig[key];
+        });
+      }
     } else {
-      _paceConfig = {};
+      _paceConfig = _defaultPaceConfig;
     }
 
-    _paceConfig.color = _paceConfig.color || _defaultPaceConfig.color;
-    _paceConfig.theme = _paceConfig.theme || _defaultPaceConfig.theme;
+    console.log(_paceConfig);
 
     if (environment === 'development') {
       return {
@@ -36,22 +67,36 @@ module.exports = {
   included: function (app) {
     this._super.included(app);
 
-    _pacePath = path.join(app.bowerDirectory, 'pace');
-
     if (_paceConfig) {
-      var themePath = path.join(_pacePath, 'themes', _paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css');
-      app.import(themePath);
+      var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
+          originalPaceThemePath = path.join(this.app.bowerDirectory, 'pace', 'themes', paceThemeName),
+          addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName);
+
+      if (fs.existsSync(originalPaceThemePath)) {
+        app.import(originalPaceThemePath);
+      } else if (fs.existsSync(addonPaceThemePath)) {
+        app.import(addonPaceThemePath);
+      } else {
+        throw new Error('Pace theme CSS file was not found: ' + paceThemeName);
+      }
     }
   },
 
   contentFor: function (name) {
-    if (name === 'head') {
-      var paceScriptPath = path.join(_pacePath, 'pace.min.js'),
-          addonScriptPath = path.resolve(__dirname, 'addon', 'script-loader.js'),
-          paceScript = fs.readFileSync(paceScriptPath, 'utf8'),
-          addonScript = fs.readFileSync(addonScriptPath, 'utf8');
+    if (_paceConfig && name === 'head') {
+      var paceScriptPath = path.join(this.app.bowerDirectory, 'pace', 'pace.js'),
+          addonScriptPath = path.resolve('vendor', 'ember-cli-pace', 'script-loader.js'),
+          paceScript, addonScript;
 
-      return '<script type="text/javascript">' + paceScript + ';\n' + addonScript + '</script>';
+      if (this.app.env === 'production') {
+        paceScript = UglifyJS.minify(paceScriptPath).code;
+        addonScript = UglifyJS.minify(addonScriptPath).code;
+      } else {
+        paceScript = fs.readFileSync(paceScriptPath, 'utf8');
+        addonScript = fs.readFileSync(addonScriptPath, 'utf8');
+      }
+
+      return '<script type="text/javascript" data-pace-options=\'' + JSON.stringify(_paceConfig) + '\'>' + paceScript + ';\n' + addonScript + '</script>';
     }
   }
 };

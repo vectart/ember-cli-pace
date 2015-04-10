@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'dummy',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'none',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -19,8 +19,7 @@ module.exports = function(environment) {
     },
 
     pace: {
-      color: 'black',
-      theme: 'big-counter'
+      color: 'black'
     }
   };
 
