@@ -52,8 +52,6 @@ module.exports = {
       _paceConfig = _defaultPaceConfig;
     }
 
-    console.log(_paceConfig);
-
     if (environment === 'development') {
       return {
         pace: _paceConfig,
@@ -62,6 +60,10 @@ module.exports = {
         }
       };
     }
+
+    return {
+      pace: _paceConfig
+    };
   },
 
   included: function (app) {
