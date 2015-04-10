@@ -2,7 +2,7 @@
 
 <img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="300" />
 
-### [Demo](http://vectart.github.io/ember-cli-pace/)
+# [Demo](http://vectart.github.io/ember-cli-pace/)
 
 ## Installation
 
@@ -25,27 +25,54 @@ Due to application scripts loading may take some time (especially, using mobile 
 
 Therefore, the scripts will be loaded via AJAX, which allows to [compute loaded vs total bytes ratio](https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress). If your scripts are located on separate host, please note CORS policy.
 
-## Themes
+## Configuration
 
-Pace.js provides [14 progress bar themes](https://github.com/HubSpot/pace/tree/master/themes/black) in [10 colors](https://github.com/HubSpot/pace/tree/master/themes). See the progress bars and spinners in action: http://github.hubspot.com/pace/docs/welcome/
-
-To configure theme, append few lines to `config/environment.js`:
+All options, excluding addon-related `color` and `theme`, are documented on [http://github.hubspot.com/pace/](http://github.hubspot.com/pace/#configuration).
 
 ```javascript
 var ENV = {
   pace: {
-    color: 'red', // default: blue
-    theme: 'big-counter' // default: minimal
+    color: 'blue',
+    theme: 'material',
+    catchupTime: 50,
+    initialRate: .01,
+    minTime: 100,
+    ghostTime: 50,
+    maxProgressPerFrame: 20,
+    easeFactor: 1.25,
+    startOnPageLoad: true,
+    restartOnPushState: true,
+    restartOnRequestAfter: 500,
+    target: 'body',
+    elements: {
+      checkInterval: 100,
+      selectors: ['body', '.ember-view']
+    },
+    eventLag: {
+      minSamples: 10,
+      sampleCount: 3,
+      lagThreshold: 3
+    },
+    ajax: {
+      trackMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+      trackWebSockets: true,
+      ignoreURLs: []
+    }
   }
 };
 ```
 
-![Pace.js themes](https://www.dropbox.com/s/d4ladjwfrqq6ehv/Screenshot%202015-04-07%2011.54.48.png?dl=1)
+## Themes
 
+This addon is bundled with Material spinner theme, which is set by default. See it on [demo page](http://vectart.github.io/ember-cli-pace/).
+
+Pace.js originally provides [14 progress bar themes](https://github.com/HubSpot/pace/tree/master/themes/black) in [10 colors](https://github.com/HubSpot/pace/tree/master/themes). See the progress bars and spinners in action: http://github.hubspot.com/pace/docs/welcome/
+
+![Pace.js themes](https://www.dropbox.com/s/d4ladjwfrqq6ehv/Screenshot%202015-04-07%2011.54.48.png?dl=1)
 
 ## Pace API
 
-More details on Pace API and configuration could be found on [http://github.hubspot.com/pace/](http://github.hubspot.com/pace/)
+More details on Pace events, methods and configuration could be found on http://github.hubspot.com/pace/
 
 ## Developing ember-cli-pace
 
