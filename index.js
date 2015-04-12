@@ -87,7 +87,7 @@ module.exports = {
   contentFor: function (name) {
     if (_paceConfig && name === 'head') {
       var paceScriptPath = path.join(this.app.bowerDirectory, 'pace', 'pace.js'),
-          addonScriptPath = path.resolve('vendor', 'ember-cli-pace', 'script-loader.js'),
+          addonScriptPath = path.resolve(__dirname, 'vendor', 'ember-cli-pace', 'script-loader.js'),
           paceScript, addonScript;
 
       if (this.app.env === 'production') {
