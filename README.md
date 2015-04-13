@@ -1,8 +1,9 @@
 # [Pace.js](http://github.hubspot.com/pace/docs/welcome/) load progress bar for Ember apps, incl. initial scripts lazy loading
 
-<img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="300" />
+<img src="https://www.dropbox.com/s/baoswhof2u2wbhd/Screenshot%202015-04-07%2011.30.43.png?dl=1" width="240" />
 
-# [Demo](http://vectart.github.io/ember-cli-pace/)
+# [Demo &#10140;](http://vectart.github.io/ember-cli-pace/)
+[![Downloads](http://img.shields.io/npm/dm/ember-cli-pace.svg)](https://npmjs.org/package/ember-cli-pace) [![Code Climate](https://codeclimate.com/github/vectart/ember-cli-pace/badges/gpa.svg)](https://codeclimate.com/github/vectart/ember-cli-pace) [![Ember Observer Score](http://emberobserver.com/badges/ember-cli-pace.svg)](http://emberobserver.com/addons/ember-cli-pace)
 
 ## Installation
 
