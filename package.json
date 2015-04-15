@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-pace",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Pace.js load progress bar for Ember apps, incl. Flash-like initial script lazy loading",
   "directories": {
     "doc": "doc",
@@ -49,7 +49,7 @@
     "lazy loading"
   ],
   "dependencies": {
-    "ember-cli-babel": "^4.0.0",
+    "ember-cli-babel": "^5.0.0",
     "uglify-js": "^2.4.19"
   },
   "ember-addon": {

@@ -66,18 +66,16 @@ module.exports = {
     };
   },
 
-  included: function (app) {
-    this._super.included(app);
-
-    if (_paceConfig) {
+  treeFor: function (name) {
+    if (_paceConfig && name === 'styles') {
       var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
           originalPaceThemePath = path.join(this.app.bowerDirectory, 'pace', 'themes', paceThemeName),
           addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName);
 
       if (fs.existsSync(originalPaceThemePath)) {
-        app.import(originalPaceThemePath);
+        this.app.import(originalPaceThemePath);
       } else if (fs.existsSync(addonPaceThemePath)) {
-        app.import(addonPaceThemePath);
+        this.app.import(addonPaceThemePath);
       } else {
         throw new Error('Pace theme CSS file was not found: ' + paceThemeName);
       }
