@@ -45,7 +45,7 @@ module.exports = {
         _paceConfig = false;
       } else {
         Object.keys(_defaultPaceConfig).forEach(function (key) {
-          _paceConfig[key] = baseConfig.pace[key] || _defaultPaceConfig[key];
+          _paceConfig[key] = baseConfig.pace.hasOwnProperty(key) ? baseConfig.pace[key] : _defaultPaceConfig[key];
         });
       }
     } else {
