@@ -9,7 +9,7 @@
 
 Using latest Ember-cli, run the command:
 
-`ember install:addon ember-cli-pace`
+`ember install ember-cli-pace`
 
 or for older versions:
 
