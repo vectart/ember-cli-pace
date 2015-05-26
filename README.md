@@ -28,13 +28,18 @@ Therefore, the scripts will be loaded via AJAX, which allows to [compute loaded 
 
 ## Configuration
 
-All options, excluding addon-related `color` and `theme`, are documented on [http://github.hubspot.com/pace/](http://github.hubspot.com/pace/#configuration).
+All options, excluding `color` and `theme` related to the addon, are documented on [http://github.hubspot.com/pace/](http://github.hubspot.com/pace/#configuration).
 
 ```javascript
 var ENV = {
   pace: {
-    color: 'blue',
+  
+    // addon-specific options to configure theme
     theme: 'material',
+    color: 'blue',
+    
+    // pace-specific options
+    // learn more on http://github.hubspot.com/pace/#configuration
     catchupTime: 50,
     initialRate: .01,
     minTime: 100,
