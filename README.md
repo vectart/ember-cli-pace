@@ -40,6 +40,7 @@ var ENV = {
     
     // pace-specific options
     // learn more on http://github.hubspot.com/pace/#configuration
+    //           and https://github.com/HubSpot/pace/blob/master/pace.coffee#L1-L72
     catchupTime: 50,
     initialRate: .01,
     minTime: 100,
