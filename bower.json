@@ -11,6 +11,6 @@
     "ember-qunit": "0.3.0",
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
-    "pace": "vectart/pace"
+    "pace": "~1.0.2"
   }
 }
