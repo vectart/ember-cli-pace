@@ -4,6 +4,7 @@
 var fs = require('fs');
 var path = require('path');
 var UglifyJS = require("uglify-js");
+var PACE_DIR = 'PACE';
 
 var _paceConfig = {};
 var _defaultPaceConfig = {
@@ -69,7 +70,7 @@ module.exports = {
   treeFor: function (name) {
     if (_paceConfig && name === 'styles') {
       var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
-          originalPaceThemePath = path.join(this.app.bowerDirectory, 'pace', 'themes', paceThemeName),
+          originalPaceThemePath = path.join(this.app.bowerDirectory, PACE_DIR, 'themes', paceThemeName),
           addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName);
 
       if (fs.existsSync(originalPaceThemePath)) {
@@ -84,7 +85,7 @@ module.exports = {
 
   contentFor: function (name) {
     if (_paceConfig && name === 'head') {
-      var paceScriptPath = path.join(this.app.bowerDirectory, 'pace', 'pace.js'),
+      var paceScriptPath = path.join(this.app.bowerDirectory, PACE_DIR, 'pace.js'),
           addonScriptPath = path.resolve(__dirname, 'vendor', 'ember-cli-pace', 'script-loader.js'),
           paceScript, addonScript;
 
