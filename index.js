@@ -10,7 +10,7 @@ var _defaultPaceConfig = {
   color: 'blue',
   theme: 'material',
   catchupTime: 50,
-  initialRate: .01,
+  initialRate: 0.01,
   minTime: 100,
   ghostTime: 50,
   maxProgressPerFrame: 20,
