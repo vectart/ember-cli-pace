@@ -35,7 +35,7 @@ var ENV = {
   pace: {
   
     // addon-specific options to configure theme
-    theme: 'material',
+    theme: 'minimal',
     color: 'blue',
     
     // pace-specific options
