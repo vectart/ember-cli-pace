@@ -35,7 +35,7 @@
   // http://youmightnotneedjquery.com/
 
   var ready = function (fn) {
-    if (document.readyState !== 'loading') {
+    if (document.readyState !== 'loading' && document.readyState !== 'interactive') {
       fn();
     } else if (document.addEventListener) {
       document.addEventListener('DOMContentLoaded', fn);
