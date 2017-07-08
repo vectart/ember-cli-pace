@@ -1,13 +1,16 @@
-/* jshint node: true */
+/* eslint-env node */
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var UglifyJS = require("uglify-js");
-var PACE_DIR = 'PACE';
+const fs = require('fs');
+const path = require('path');
+const UglifyJS = require("uglify-js");
+const fastbootTransform = require('fastboot-transform');
 
-var _paceConfig = {};
-var _defaultPaceConfig = {
+const PACE_DIR = 'pace-progress';
+const ADDON_PACE_DIR = 'ember-cli-pace';
+
+let _paceConfig = {};
+const _defaultPaceConfig = {
   color: 'blue',
   theme: 'minimal',
   catchupTime: 50,
@@ -39,15 +42,26 @@ var _defaultPaceConfig = {
 
 module.exports = {
   name: 'ember-cli-pace',
+  options: {
+    nodeAssets: {
+      'pace-progress': {
+        vendor: {
+          srcDir: '',
+          include: ['pace.js', 'themes/**'],
+          processTree(input) {
+            return fastbootTransform(input);
+          }
+        }
+      }
+    }
+  },
 
-  config: function (environment, baseConfig) {
+  config(environment, baseConfig) {
     if ('pace' in baseConfig) {
       if (!baseConfig.pace) {
         _paceConfig = false;
       } else {
-        Object.keys(_defaultPaceConfig).forEach(function (key) {
-          _paceConfig[key] = baseConfig.pace.hasOwnProperty(key) ? baseConfig.pace[key] : _defaultPaceConfig[key];
-        });
+        _paceConfig = Object.assign({}, _defaultPaceConfig, baseConfig.pace);
       }
     } else {
       _paceConfig = _defaultPaceConfig;
@@ -67,37 +81,55 @@ module.exports = {
     };
   },
 
-  treeFor: function (name) {
-    if (_paceConfig && name === 'styles') {
-      var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
-          originalPaceThemePath = path.join(this.app.bowerDirectory, PACE_DIR, 'themes', paceThemeName),
-          addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName);
-
-      if (fs.existsSync(originalPaceThemePath)) {
-        this.app.import(originalPaceThemePath);
-      } else if (fs.existsSync(addonPaceThemePath)) {
-        this.app.import(addonPaceThemePath);
-      } else {
-        throw new Error('Pace theme CSS file was not found: ' + paceThemeName);
-      }
-    }
-  },
-
-  contentFor: function (name) {
+  contentFor(name) {
     if (_paceConfig && name === 'head') {
-      var paceScriptPath = path.join(this.app.bowerDirectory, PACE_DIR, 'pace.js'),
-          addonScriptPath = path.resolve(__dirname, 'vendor', 'ember-cli-pace', 'script-loader.js'),
+      let paceScriptPath = path.join('node_modules', PACE_DIR, 'pace.js'),
+          addonScriptPath = path.join('vendor', ADDON_PACE_DIR, 'script-loader.js'),
           paceScript, addonScript;
 
+      paceScript = fs.readFileSync(paceScriptPath, 'utf8');
+      addonScript = fs.readFileSync(addonScriptPath, 'utf8');
+
       if (this.app.env === 'production') {
-        paceScript = UglifyJS.minify(paceScriptPath).code;
-        addonScript = UglifyJS.minify(addonScriptPath).code;
-      } else {
-        paceScript = fs.readFileSync(paceScriptPath, 'utf8');
-        addonScript = fs.readFileSync(addonScriptPath, 'utf8');
+        paceScript = UglifyJS.minify(paceScript).code;
+        addonScript = UglifyJS.minify(addonScript).code;
       }
 
       return '<script type="text/javascript" data-pace-options=\'' + JSON.stringify(_paceConfig) + '\'>' + paceScript + ';\n' + addonScript + '</script>';
     }
+  },
+  included() {
+    this._super.included.apply(this, arguments);
+    this._ensureThisImport();
+
+    let paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
+        originalPaceThemePath = path.join('vendor', PACE_DIR, 'themes', paceThemeName),
+        addonPaceThemePath = path.join('vendor', ADDON_PACE_DIR, 'themes', paceThemeName);
+
+    if (fs.existsSync(addonPaceThemePath)) {
+      this.import(addonPaceThemePath);
+    } else {
+      this.import(originalPaceThemePath);
+    }
+  },
+  _ensureThisImport() {
+    if (!this.import) {
+      this._findHost = function findHostShim() {
+        let current = this;
+        let app;
+
+        do {
+          app = current.app || app;
+        } while (current.parent.parent && (current = current.parent));
+        return app;
+      };
+      this.import = function importShim(asset, options) {
+        let app = this._findHost();
+        app.import(asset, options);
+      };
+    }
+  },
+  isDevelopingAddon() {
+    return true;
   }
 };

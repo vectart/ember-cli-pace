@@ -5,7 +5,7 @@ export default Ember.Controller.extend(Ember.PromiseProxyMixin, {
 
   actions: {
     load: function () {
-      var promise = $.ajax({
+      var promise = Ember.$.ajax({
         url: "https://andruxnet-random-famous-quotes.p.mashape.com/cat=movies",
         type: 'post',
         dataType: 'json',
