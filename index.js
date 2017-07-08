@@ -84,7 +84,7 @@ module.exports = {
   contentFor(name) {
     if (_paceConfig && name === 'head') {
       let paceScriptPath = path.join('node_modules', PACE_DIR, 'pace.js'),
-          addonScriptPath = path.join('vendor', ADDON_PACE_DIR, 'script-loader.js'),
+          addonScriptPath = path.resolve(__dirname, 'vendor', ADDON_PACE_DIR, 'script-loader.js'),
           paceScript, addonScript;
 
       paceScript = fs.readFileSync(paceScriptPath, 'utf8');
@@ -103,8 +103,8 @@ module.exports = {
     this._ensureThisImport();
 
     let paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
-        originalPaceThemePath = path.join(__dirname, 'vendor', PACE_DIR, 'themes', paceThemeName),
-        addonPaceThemePath = path.join(__dirname, 'vendor', ADDON_PACE_DIR, 'themes', paceThemeName);
+        originalPaceThemePath = path.join('vendor', PACE_DIR, 'themes', paceThemeName),
+        addonPaceThemePath = path.join('vendor', ADDON_PACE_DIR, 'themes', paceThemeName);
 
     if (fs.existsSync(addonPaceThemePath)) {
       this.import(addonPaceThemePath);
