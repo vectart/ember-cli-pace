@@ -2,37 +2,6 @@
   "name": "ember-cli-pace",
   "version": "0.1.0",
   "description": "Pace.js load progress bar for Ember apps, incl. Flash-like initial script lazy loading",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "scripts": {
-    "start": "ember server",
-    "build": "ember build",
-    "test": "ember test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vectart/ember-cli-pace.git"
-  },
-  "engines": {
-    "node": ">= 0.10.0"
-  },
-  "author": "Marat Dyatko <i@marat.by> (https://github.com/vectart)",
-  "license": "MIT",
-  "devDependencies": {
-    "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "1.13.15",
-    "ember-cli-app-version": "1.0.0",
-    "ember-cli-dependency-checker": "1.2.0",
-    "ember-cli-htmlbars": "1.0.2",
-    "ember-cli-ic-ajax": "0.2.4",
-    "ember-cli-inject-live-reload": "^1.4.0",
-    "ember-cli-qunit": "1.2.1",
-    "ember-cli-uglify": "1.2.0",
-    "ember-disable-prototype-extensions": "^1.1.0",
-    "ember-export-application-global": "^1.0.5"
-  },
   "keywords": [
     "ember-addon",
     "ember-cli",
@@ -48,9 +17,50 @@
     "spinner",
     "lazy loading"
   ],
+  "author": "Marat Dyatko <i@marat.by> (https://github.com/vectart)",
+  "license": "MIT",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vectart/ember-cli-pace.git"
+  },
+  "scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "ember try:each"
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
+  },
   "dependencies": {
-    "ember-cli-babel": "^5.1.6",
-    "uglify-js": "^2.6.1"
+    "ember-cli-babel": "^6.3.0",
+    "ember-cli-node-assets": "^0.2.2",
+    "fastboot-transform": "^0.1.2",
+    "pace-progress": "^1.0.2",
+    "uglify-js": "^3.0.24"
+  },
+  "devDependencies": {
+    "broccoli-asset-rev": "^2.4.5",
+    "ember-ajax": "^3.0.0",
+    "ember-cli": "~2.14.0",
+    "ember-cli-dependency-checker": "^2.0.1",
+    "ember-cli-eslint": "^4.1.0",
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^0.4.3",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-qunit": "^4.0.0",
+    "ember-cli-shims": "^1.1.0",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-disable-prototype-extensions": "^1.1.2",
+    "ember-export-application-global": "^2.0.0",
+    "ember-load-initializers": "^1.0.0",
+    "ember-resolver": "^4.0.0",
+    "ember-source": "~2.14.0",
+    "loader.js": "^4.2.3"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
