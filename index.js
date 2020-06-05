@@ -72,8 +72,8 @@ module.exports = {
       var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
           originalPaceThemePath = path.join(this.app.bowerDirectory, PACE_DIR, 'themes', paceThemeName),
           addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName),
-          nodeModulePath = path.join('node_modules', 'ember-cli-pace'),
-          addonPaceThemePathExtra = path.join(nodeModulePath, 'vendor', 'ember-cli-pace', 'themes', paceThemeName);
+          nodeModulePath = path.join('node_modules', 'ember-cli-pace', 'vendor'),
+          addonPaceThemePathExtra = path.join(nodeModulePath, 'ember-cli-pace', 'themes', paceThemeName);
 
       if (fs.existsSync(originalPaceThemePath)) {
         this.app.import(originalPaceThemePath);
