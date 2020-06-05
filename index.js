@@ -71,12 +71,16 @@ module.exports = {
     if (_paceConfig && name === 'styles') {
       var paceThemeName = path.join(_paceConfig.color, 'pace-theme-' + _paceConfig.theme + '.css'),
           originalPaceThemePath = path.join(this.app.bowerDirectory, PACE_DIR, 'themes', paceThemeName),
-          addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName);
+          addonPaceThemePath = path.join('vendor', 'ember-cli-pace', 'themes', paceThemeName),
+          nodeModulePath = path.join('node_modules', 'ember-cli-pace'),
+          addonPaceThemePathExtra = path.join(nodeModulePath, 'vendor', 'ember-cli-pace', 'themes', paceThemeName);
 
       if (fs.existsSync(originalPaceThemePath)) {
         this.app.import(originalPaceThemePath);
       } else if (fs.existsSync(addonPaceThemePath)) {
         this.app.import(addonPaceThemePath);
+      } else if (fs.existsSync(addonPaceThemePathExtra)) {
+        this.app.import(addonPaceThemePathExtra);
       } else {
         throw new Error('Pace theme CSS file was not found: ' + paceThemeName);
       }
